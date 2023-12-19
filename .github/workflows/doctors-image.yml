@@ -1,4 +1,5 @@
 name: Doctors Automating Containerization
+
 on:
   push:
     branches:
@@ -10,9 +11,11 @@ on:
       - main
     paths:
       - 'doctors/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
     - name: Build & Push Doctors Image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "shahid0404" --password-stdin 
