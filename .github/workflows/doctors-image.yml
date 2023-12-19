@@ -20,6 +20,6 @@ jobs:
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "shahid0404" --password-stdin 
         DOCTORS_TAG=$(echo $GITHUB_SHA | cut -c1-7)
-        docker build -t final-project-doctors ./doctors
+        docker build -t final-project-doctors .
         docker tag final-project-doctors shahid0404/final-project-doctors:$DOCTORS_TAG
         docker push shahid0404/final-project-doctors:$DOCTORS_TAG
