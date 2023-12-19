@@ -35,6 +35,7 @@ def hello():
     greeting = "Hello world!"
     return greeting
 
+
 @app.route('/doctors', methods=["GET"])
 def getDoctors():
     doctors = list(mongo.db.doctors.find())
