@@ -1,9 +1,20 @@
 from flask import Flask, jsonify
 from flask_pymongo import PyMongo
+import os
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://mongo:27017/doctors'
+secrets_file_path = os.path.join(os.path.dirname(__file__), 'secrets.txt')
+with open(secrets_file_path) as f:
+    lines = f.readlines()
+    for line in lines:
+        key, value = line.strip().split('=')
+        os.environ[key] = value
 
+        
+
+# Print loaded environment variables
+print(os.environ)
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
 mongo = PyMongo(app)
 
 if mongo.db.doctors.count_documents({}) == 0:
@@ -23,13 +34,10 @@ if mongo.db.doctors.count_documents({}) == 0:
     # Insert sample data
     mongo.db.doctors.insert_many(sample_doctors)
 
-
-
-
 @app.route('/hello')
 def hello():
-  greeting = "Hello world!"
-  return greeting
+    greeting = "Hello world!"
+    return greeting
 
 @app.route('/doctors', methods=["GET"])
 def getDoctors():
@@ -45,4 +53,4 @@ def getDoctor(id):
     return jsonify(doctor)
 
 if __name__ == "__main__":
-  app.run(host="0.0.0.0",port=9090)
+    app.run(host="0.0.0.0", port=9090)
