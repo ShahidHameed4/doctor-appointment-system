@@ -30,8 +30,6 @@ if mongo.db.doctors.count_documents({}) == 0:
     ]
     # Insert sample data
     mongo.db.doctors.insert_many(sample_doctors)
-
-
 @app.route('/hello')
 def hello():
     greeting = "Hello world!"
