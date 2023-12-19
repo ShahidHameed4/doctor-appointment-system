@@ -35,6 +35,9 @@ def hello():
     greeting = "Hello world!"
     return greeting
 
+@app.route('/health' , methods=["GET"])
+def health():
+    return "OK"
 
 @app.route('/doctors', methods=["GET"])
 def getDoctors():
