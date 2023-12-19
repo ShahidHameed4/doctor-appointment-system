@@ -11,11 +11,9 @@ on:
       - main
     paths:
       - 'appointments/**'
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     - name: Build & Push Appointments Image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "shahid0404" --password-stdin 
