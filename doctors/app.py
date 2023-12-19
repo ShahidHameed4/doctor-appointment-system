@@ -8,14 +8,7 @@ with open(secrets_file_path) as f:
     lines = f.readlines()
     for line in lines:
         key, value = line.strip().split('=')
-        os.environ[key] = value
-
-
-
-
-
-
-        
+        os.environ[key] = value        
 
 # Print loaded environment variables
 print(os.environ)
