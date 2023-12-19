@@ -35,6 +35,7 @@ app.get('/api/doctors', async (req, res) => {
     const response = await axios.get(String(`http://${doctorsurl}/doctors`));
     const doctors = response.data;
 
+    
     res.json(doctors);
   } catch (error) {
     console.error('Error fetching doctors:', error);
