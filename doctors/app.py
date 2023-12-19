@@ -28,10 +28,6 @@ if mongo.db.doctors.count_documents({}) == 0:
             "specialty": "General Physician"
         }
     ]
-
-
-
-
     # Insert sample data
     mongo.db.doctors.insert_many(sample_doctors)
 
