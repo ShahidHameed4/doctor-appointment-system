@@ -4,22 +4,14 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'frontend/**'
-      - 'doctors/**'
-      - 'appointments/**'
   pull_request:
     branches:
       - main
-    paths:
-      - 'frontend/**'
-      - 'doctors/**'
-      - 'appointments/**'
 
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
-    if: contains(paths, 'frontend/**')
+    if: ${{ contains(github.event.head_commit.modified, 'frontend/') }}
 
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +25,7 @@ jobs:
 
   build-doctors:
     runs-on: ubuntu-latest
-    if: contains(paths, 'doctors/**')
+    if: ${{ contains(github.event.head_commit.modified, 'doctors/') }}
 
     steps:
       - uses: actions/checkout@v2
@@ -47,7 +39,7 @@ jobs:
 
   build-appointments:
     runs-on: ubuntu-latest
-    if: contains(paths, 'appointments/**')
+    if: ${{ contains(github.event.head_commit.modified, 'appointments/') }}
 
     steps:
       - uses: actions/checkout@v2
