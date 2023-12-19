@@ -1,0 +1,25 @@
+name: Appointments Automating Containerization
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'appointments/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'appointments/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    - name: Build & Push Appointments Image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "shahid0404" --password-stdin 
+        APPOINTMENTS_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+        docker build -t final-project-appointments ./appointments
+        docker tag final-project-appointments shahid0404/final-project-appointments:$APPOINTMENTS_TAG
+        docker push shahid0404/final-project-appointments:$APPOINTMENTS_TAG

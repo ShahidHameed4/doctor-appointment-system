@@ -1,0 +1,25 @@
+name: Doctors Automating Containerization
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'doctors/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'doctors/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    - name: Build & Push Doctors Image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "shahid0404" --password-stdin 
+        DOCTORS_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+        docker build -t final-project-doctors ./doctors
+        docker tag final-project-doctors shahid0404/final-project-doctors:$DOCTORS_TAG
+        docker push shahid0404/final-project-doctors:$DOCTORS_TAG
