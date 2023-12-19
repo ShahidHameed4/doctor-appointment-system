@@ -46,16 +46,9 @@ if mongo.db.appointments.count_documents({}) == 0:
             "patient_id": "pat3",
             "date": "2020-01-01",
             "time": "12:00"
-        },
-        {
-            "id": "app4",
-            "doctor_id": "doc4",
-            "patient_id": "pat2",
-            "date": "2020-01-01",
-            "time": "12:00"
         }
 
-        
+
     ]
 
     # Insert sample data
