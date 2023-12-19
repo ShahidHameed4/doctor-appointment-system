@@ -84,6 +84,10 @@ def getAppointment(id):
     appointment = mongo.db.appointments.find_one({"id": id})
     return jsonify(appointment)
 
+@app.route('/health' , methods=["GET"])
+def health():
+    return "OK"
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=7070)
 

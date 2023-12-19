@@ -35,7 +35,7 @@ app.get('/api/doctors', async (req, res) => {
     const response = await axios.get(String(`http://${doctorsurl}/doctors`));
     const doctors = response.data;
 
-    
+
     res.json(doctors);
   } catch (error) {
     console.error('Error fetching doctors:', error);
@@ -54,6 +54,11 @@ app.get('/api/appointments', async (req, res) => {
     res.status(500).json({ error: 'Could not fetch appointments' });
   }
 });
+
+app.get('/health', (req, res) => {
+  res.send('OK');
+});
+
 
 app.listen(PORT, HOST); 
 console.log(`Running on http://${HOST}:${PORT}`);
