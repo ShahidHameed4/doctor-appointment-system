@@ -54,6 +54,8 @@ if mongo.db.appointments.count_documents({}) == 0:
             "date": "2020-01-01",
             "time": "12:00"
         }
+
+        
     ]
 
     # Insert sample data
